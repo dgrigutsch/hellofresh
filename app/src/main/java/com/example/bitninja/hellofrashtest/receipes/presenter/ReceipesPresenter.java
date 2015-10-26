@@ -17,17 +17,12 @@ public class ReceipesPresenter {
 
     private BaseActivity view;
     private List<ReceipesModel> receipesModel;
-    private ReceipesListener receipesListener;
 
-    public ReceipesPresenter(BaseActivity activity){
+    public ReceipesPresenter(BaseActivity activity) {
         view = activity;
-        if(view instanceof ReceipesListener)
-            receipesListener = (ReceipesListener) view;
-        else
-            throw new ClassCastException("Activity needs to be implements "+ReceipesListener.class.getSimpleName());
     }
 
-    public void loadFileFromDisk(final ReceipesListener listener){
+    public void loadFileFromDisk(final ReceipesListener listener) {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
@@ -39,9 +34,9 @@ public class ReceipesPresenter {
         });
     }
 
-    public List<ReceipesModel> getReceipesModel(){
-        if(receipesModel==null)
-            throw new NullPointerException(ReceipesModel.class.getSimpleName()+" is null");
+    public List<ReceipesModel> getReceipesModel() {
+        if (receipesModel == null)
+            throw new NullPointerException(ReceipesModel.class.getSimpleName() + " is null");
         return receipesModel;
     }
 

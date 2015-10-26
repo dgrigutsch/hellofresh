@@ -1,27 +1,24 @@
 package com.example.bitninja.hellofrashtest.receipes.view;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.bitninja.hellofrashtest.R;
 import com.example.bitninja.hellofrashtest.receipes.adapter.ReceipeAdapter;
 import com.example.bitninja.hellofrashtest.receipes.model.ReceipesModel;
-import com.example.bitninja.hellofrashtest.ui.binder.ItemBinder;
-import com.example.bitninja.hellofrashtest.ui.binder.ItemBinderBase;
-import com.example.bitninja.hellofrashtest.ui.binder.RecyclerViewBindings;
+import com.example.bitninja.hellofrashtest.receipes.presenter.ReceipesPresenter;
 
 import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ReceipesActivityFragment extends Fragment {
+public class ReceipesActivityFragment extends Fragment implements ReceipesPresenter.ReceipesListener {
 
     private RecyclerView recyclerView;
 
@@ -37,9 +34,9 @@ public class ReceipesActivityFragment extends Fragment {
         return v;
     }
 
-    public void onUpdateReceipes(List<ReceipesModel> model) {
+    @Override
+    public void onLoadedFromFile(List<ReceipesModel> model) {
         ReceipeAdapter adapter = new ReceipeAdapter(model);
         recyclerView.setAdapter(adapter);
-
     }
 }
