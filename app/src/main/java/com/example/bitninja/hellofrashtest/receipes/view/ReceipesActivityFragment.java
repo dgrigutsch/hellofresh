@@ -1,5 +1,6 @@
 package com.example.bitninja.hellofrashtest.receipes.view;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bitninja.hellofrashtest.R;
-import com.example.bitninja.hellofrashtest.receipes.adapter.ReceipeAdapter;
+import com.example.bitninja.hellofrashtest.databinding.FragmentReceipesBinding;
+import com.example.bitninja.hellofrashtest.receipes.model.ReceipeViewModel;
 import com.example.bitninja.hellofrashtest.receipes.model.ReceipesModel;
 import com.example.bitninja.hellofrashtest.receipes.presenter.ReceipesPresenter;
 
@@ -21,6 +23,8 @@ import java.util.List;
 public class ReceipesActivityFragment extends Fragment implements ReceipesPresenter.ReceipesListener {
 
     private RecyclerView recyclerView;
+    private ReceipeViewModel receipeViewModel;
+    private FragmentReceipesBinding binding;
 
     public ReceipesActivityFragment() {
     }
@@ -36,7 +40,11 @@ public class ReceipesActivityFragment extends Fragment implements ReceipesPresen
 
     @Override
     public void onLoadedFromFile(List<ReceipesModel> model) {
-        ReceipeAdapter adapter = new ReceipeAdapter(model);
-        recyclerView.setAdapter(adapter);
+        receipeViewModel = new ReceipeViewModel();
+        receipeViewModel.receipes.addAll(model);
+
+        binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_receipes);
+        binding.setReceipeModel(receipeViewModel);
+        binding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }
