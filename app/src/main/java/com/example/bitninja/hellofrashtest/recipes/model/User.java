@@ -18,58 +18,15 @@ public class User {
     @Expose
     private String name;
 
-    /**
-     *
-     * @return
-     * The email
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     *
-     * @param email
-     * The email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     *
-     * @return
-     * The latlng
-     */
     public String getLatlng() {
         return latlng;
     }
 
-    /**
-     *
-     * @param latlng
-     * The latlng
-     */
-    public void setLatlng(String latlng) {
-        this.latlng = latlng;
-    }
-
-    /**
-     *
-     * @return
-     * The name
-     */
     public String getName() {
         return name;
     }
-
-    /**
-     *
-     * @param name
-     * The name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

@@ -7,9 +7,6 @@ package com.example.bitninja.hellofrashtest.utils;
 import android.content.res.Resources;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -66,7 +63,6 @@ public class JSONResourceReader {
      * @return An object of type T, with member fields populated using Gson.
      */
     public <T> T constructUsingGson(Class<T> type) {
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson(jsonString, type);
+        return GsonFactory.getInstance().getGson().fromJson(jsonString, type);
     }
 }
