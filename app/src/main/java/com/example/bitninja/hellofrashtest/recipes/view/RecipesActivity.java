@@ -1,4 +1,4 @@
-package com.example.bitninja.hellofrashtest.receipes.view;
+package com.example.bitninja.hellofrashtest.recipes.view;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,11 +8,11 @@ import android.view.View;
 
 import com.example.bitninja.hellofrashtest.R;
 import com.example.bitninja.hellofrashtest.base.BaseActivity;
-import com.example.bitninja.hellofrashtest.receipes.presenter.ReceipesPresenter;
+import com.example.bitninja.hellofrashtest.recipes.presenter.RecipesPresenter;
 
-public class ReceipesActivity extends BaseActivity {
+public class RecipesActivity extends BaseActivity {
 
-    private ReceipesPresenter presenter;
+    private RecipesPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class ReceipesActivity extends BaseActivity {
                         .setAction("Action", null).show();
             }
         });
-        presenter = new ReceipesPresenter(this);
-        ReceipesActivityFragment fragment = (ReceipesActivityFragment)
+        presenter = new RecipesPresenter(this);
+        RecipesActivityFragment fragment = (RecipesActivityFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment);
         if (fragment != null) {
             presenter.loadFileFromDisk(fragment);

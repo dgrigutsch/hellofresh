@@ -1,4 +1,4 @@
-package com.example.bitninja.hellofrashtest.receipes.model;
+package com.example.bitninja.hellofrashtest.recipes.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -12,16 +12,16 @@ import com.example.bitninja.hellofrashtest.ui.binder.ItemBinderBase;
 /**
  * Created by Bitninja on 26.10.2015.
  */
-public class ReceipeViewModel extends BaseObservable {
+public class RecipeViewModel extends BaseObservable {
 
     @Bindable
-    public ObservableArrayList<ReceipesModel> receipes;
+    public ObservableArrayList<RecipesModel> recipes;
 
-    public ReceipeViewModel() {
-        this.receipes = new ObservableArrayList<>();
+    public RecipeViewModel() {
+        this.recipes = new ObservableArrayList<>();
     }
 
-    public ItemBinder<ReceipesModel> itemViewBinder() {
-        return new ItemBinderBase<>(BR.receipe, R.layout.item_receipe);
+    public ItemBinder<RecipesModel> itemViewBinder() {
+        return new ItemBinderBase<>(BR.recipe, R.layout.item_recipe);
     }
 }

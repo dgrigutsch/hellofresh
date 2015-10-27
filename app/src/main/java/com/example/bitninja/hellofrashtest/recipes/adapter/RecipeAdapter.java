@@ -1,4 +1,4 @@
-package com.example.bitninja.hellofrashtest.receipes.adapter;
+package com.example.bitninja.hellofrashtest.recipes.adapter;
 
 import android.support.annotation.Nullable;
 
@@ -10,9 +10,9 @@ import java.util.Collection;
 /**
  * Created by Bitninja on 27.10.2015.
  */
-public class ReceipeAdapter extends BindingRecyclerViewAdapter {
+public class RecipeAdapter extends BindingRecyclerViewAdapter {
 
-    public ReceipeAdapter(ItemBinder itemBinder, @Nullable Collection items) {
+    public RecipeAdapter(ItemBinder itemBinder, @Nullable Collection items) {
         super(itemBinder, items);
     }
 }

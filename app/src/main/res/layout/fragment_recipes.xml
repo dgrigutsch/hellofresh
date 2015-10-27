@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="receipeModel"
-            type="com.example.bitninja.hellofrashtest.receipes.model.ReceipeViewModel" />
+            name="recipeModel"
+            type="com.example.bitninja.hellofrashtest.recipes.model.RecipeViewModel" />
     </data>
 
     <android.support.v7.widget.RecyclerView
@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        app:itemViewBinder="@{receipeModel.itemViewBinder}"
-        app:items="@{receipeModel.receipes}" />
+        app:itemViewBinder="@{recipeModel.itemViewBinder}"
+        app:items="@{recipeModel.recipes}" />
 </layout>
 
 
