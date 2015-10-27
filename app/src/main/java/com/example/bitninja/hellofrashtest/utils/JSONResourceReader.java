@@ -20,12 +20,12 @@ import java.io.Writer;
  * An object for reading from a JSON resource file and constructing an object from that resource file using Gson.
  */
 public class JSONResourceReader {
+    public static final String CHARSET_NAME = "UTF-8";
 
     // === [ Private Data Members ] ============================================
-
+    private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
     // Our JSON, in string form.
     private String jsonString;
-    private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
 
     // === [ Public API ] ======================================================
 
@@ -40,7 +40,7 @@ public class JSONResourceReader {
         InputStream resourceReader = resources.openRawResource(id);
         Writer writer = new StringWriter();
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, "UTF-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, CHARSET_NAME));
             String line = reader.readLine();
             while (line != null) {
                 writer.write(line);

@@ -46,5 +46,6 @@ public class ReceipesActivityFragment extends Fragment implements ReceipesPresen
         binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_receipes);
         binding.setReceipeModel(receipeViewModel);
         binding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }
 }
