@@ -15,4 +15,6 @@
     </string>
     <string name="title_activity_receipes">ReceipesActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="difficulty">Level</string>
+    <string name="minutes">min</string>
 </resources>

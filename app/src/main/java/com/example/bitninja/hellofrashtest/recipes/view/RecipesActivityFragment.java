@@ -42,10 +42,9 @@ public class RecipesActivityFragment extends Fragment implements RecipesPresente
     public void onLoadedFromFile(List<RecipesModel> model) {
         recipeViewModel = new RecipeViewModel();
         recipeViewModel.recipes.addAll(model);
-
         binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_recipes);
-        binding.setRecipeModel(recipeViewModel);
         binding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.setRecipeModel(recipeViewModel);
 
     }
 }
