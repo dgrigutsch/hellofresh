@@ -14,10 +14,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.bitninja.hellofreshtest.base.BaseActivity"></activity>
+        <activity android:name="com.example.bitninja.hellofreshtest.base.BaseActivity" />
         <activity
             android:name="com.example.bitninja.hellofreshtest.login.view.LoginActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name="com.example.bitninja.hellofreshtest.recipes.view.RecipesActivity"
             android:label="@string/title_activity_receipes"
