@@ -6,11 +6,7 @@
 
         <variable
             name="recipeModel"
-            type="com.example.bitninja.hellofrashtest.recipes.model.RecipeViewModel" />
-
-        <variable
-            name="view"
-            type="com.example.bitninja.hellofrashtest.recipes.view.RecipesActivityFragment" />
+            type="com.example.bitninja.hellofreshtest.recipes.model.RecipeViewModel" />
 
     </data>
 
@@ -18,7 +14,6 @@
         android:id="@+id/activity_users_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="view.onItemClick"
         android:scrollbars="vertical"
         app:itemViewBinder="@{recipeModel.itemViewBinder}"
         app:items="@{recipeModel.recipes}" />
