@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.bitninja.hellofrashtest.R;
 import com.example.bitninja.hellofrashtest.base.BaseActivity;
+import com.example.bitninja.hellofrashtest.base.BasePresenter;
 import com.example.bitninja.hellofrashtest.recipes.model.RecipesModel;
 import com.example.bitninja.hellofrashtest.utils.JSONResourceReader;
 
@@ -13,13 +14,12 @@ import java.util.List;
 /**
  * Created by Bitninja on 26.10.2015.
  */
-public class RecipesPresenter {
+public class RecipesPresenter extends BasePresenter<BaseActivity> {
 
-    private BaseActivity view;
     private List<RecipesModel> receipesModel;
 
     public RecipesPresenter(BaseActivity activity) {
-        view = activity;
+        bindView(activity);
     }
 
     public void loadFileFromDisk(final ReceipesListener listener) {
@@ -27,7 +27,7 @@ public class RecipesPresenter {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                JSONResourceReader reader = new JSONResourceReader(view.getResources(), R.raw.recipes);
+                JSONResourceReader reader = new JSONResourceReader(getView().getResources(), R.raw.recipes);
                 RecipesModel[] response = reader.constructUsingGson(RecipesModel[].class);
                 receipesModel = Arrays.asList(response);
                 return null;

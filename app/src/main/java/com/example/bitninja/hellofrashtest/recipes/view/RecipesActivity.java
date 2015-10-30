@@ -10,9 +10,7 @@ import com.example.bitninja.hellofrashtest.R;
 import com.example.bitninja.hellofrashtest.base.BaseActivity;
 import com.example.bitninja.hellofrashtest.recipes.presenter.RecipesPresenter;
 
-public class RecipesActivity extends BaseActivity {
-
-    private RecipesPresenter presenter;
+public class RecipesActivity extends BaseActivity<RecipesPresenter> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +33,10 @@ public class RecipesActivity extends BaseActivity {
         if (fragment != null) {
             presenter.loadFileFromDisk(fragment);
         }
+    }
+
+    @Override
+    public RecipesPresenter getPresenter() {
+        return presenter;
     }
 }

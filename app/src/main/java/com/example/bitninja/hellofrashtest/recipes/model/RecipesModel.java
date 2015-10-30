@@ -1,5 +1,8 @@
 package com.example.bitninja.hellofrashtest.recipes.model;
 
+import android.view.View;
+import android.widget.Toast;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -171,5 +174,9 @@ public class RecipesModel {
 
     public List<String> getWeeks() {
         return weeks;
+    }
+
+    public void onItemClick(View v) {
+        Toast.makeText(v.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
     }
 }
