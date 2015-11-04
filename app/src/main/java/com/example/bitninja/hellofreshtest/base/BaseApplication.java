@@ -6,7 +6,7 @@ import android.os.StrictMode;
 import com.example.bitninja.hellofreshtest.BuildConfig;
 
 /**
- * Created by Bitninja on 27.10.2015.
+ * Created by Bitninja.
  */
 public class BaseApplication extends Application {
     @Override

@@ -1,4 +1,4 @@
-package com.example.bitninja.hellofreshtest.utils;
+package com.example.bitninja.hellofreshtest.util;
 
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;

@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.4.0-beta6'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.7'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "com.android.databinding:dataBinder:1.0-rc4"
 
         // NOTE: Do not place your application dependencies here; they belong

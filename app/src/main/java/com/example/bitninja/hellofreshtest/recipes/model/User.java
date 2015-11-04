@@ -1,6 +1,5 @@
 package com.example.bitninja.hellofreshtest.recipes.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -9,13 +8,10 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("email")
-    @Expose
     private String email;
     @SerializedName("latlng")
-    @Expose
     private String latlng;
     @SerializedName("name")
-    @Expose
     private String name;
 
     public String getEmail() {

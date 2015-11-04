@@ -1,11 +1,13 @@
-package com.example.bitninja.hellofreshtest.utils;
+package com.example.bitninja.hellofreshtest.util;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * Created by Bitninja.
  */
 
 import android.content.res.Resources;
 import android.util.Log;
+
+import com.example.bitninja.hellofreshtest.util.factory.GsonFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,7 +19,7 @@ import java.io.Writer;
  * An object for reading from a JSON resource file and constructing an object from that resource file using Gson.
  */
 public class JSONResourceReader {
-    public static final String CHARSET_NAME = "UTF-8";
+    private static final String CHARSET_NAME = "UTF-8";
 
     // === [ Private Data Members ] ============================================
     private static final String LOGTAG = JSONResourceReader.class.getSimpleName();

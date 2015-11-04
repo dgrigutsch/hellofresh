@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * Created by Bitninja.
  */
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
 
@@ -19,6 +19,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      */
     public abstract P getPresenter();
 
+    @SuppressWarnings("unused")
     public void setPresenter(@NonNull P presenter) {
         this.presenter = presenter;
     }

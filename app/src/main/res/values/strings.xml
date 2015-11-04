@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloFrashTest</string>
+    <string name="app_name">HelloFreshTest</string>
     
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -10,11 +10,26 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
+    <string name="permission_rationale">“Contacts permissions are needed for providing email
+        completions.”
     </string>
     <string name="title_activity_receipes">ReceipesActivity</string>
     <string name="action_settings">Settings</string>
     <string name="difficulty">Level</string>
     <string name="minutes">min</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="calories">Calories: </string>
+    <string name="carbos">Carbohydrate: </string>
+    <string name="fibers">Dietary Fiber: </string>
+    <string name="fats">Fat: </string>
+    <string name="proteins">Protein: </string>
+    <string name="text_separator">, </string>
+    <string name="empty_int">0 g</string>
+    <string name="empty"> </string>
+    <string name="nutrition_format" formatted="false">Calories: %s, Carbohydrates: %s, Dietary Fiber: %s, Fat: %s, Protein: %s </string>
+    <string name="allergens">Allergens</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_description">imageView</string>
 </resources>

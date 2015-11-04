@@ -10,12 +10,12 @@ import com.example.bitninja.hellofreshtest.ui.binder.ItemBinder;
 import com.example.bitninja.hellofreshtest.ui.binder.ItemBinderBase;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * Created by Bitninja.
  */
 public class RecipeViewModel extends BaseObservable {
 
     @Bindable
-    public ObservableArrayList<RecipesModel> recipes;
+    public final ObservableArrayList<RecipesModel> recipes;
 
     public RecipeViewModel() {
         this.recipes = new ObservableArrayList<>();

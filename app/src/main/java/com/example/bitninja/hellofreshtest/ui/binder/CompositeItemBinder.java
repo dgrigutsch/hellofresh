@@ -6,14 +6,14 @@ package com.example.bitninja.hellofreshtest.ui.binder;
 public class CompositeItemBinder<T> implements ItemBinder<T> {
     private final ConditionalDataBinder<T>[] conditionalDataBinders;
 
+    @SafeVarargs
     public CompositeItemBinder(ConditionalDataBinder<T>... conditionalDataBinders) {
         this.conditionalDataBinders = conditionalDataBinders;
     }
 
     @Override
     public int getLayoutRes(T model) {
-        for (int i = 0; i < conditionalDataBinders.length; i++) {
-            ConditionalDataBinder<T> dataBinder = conditionalDataBinders[i];
+        for (ConditionalDataBinder<T> dataBinder : conditionalDataBinders) {
             if (dataBinder.canHandle(model)) {
                 return dataBinder.getLayoutRes(model);
             }
@@ -24,8 +24,7 @@ public class CompositeItemBinder<T> implements ItemBinder<T> {
 
     @Override
     public int getBindingVariable(T model) {
-        for (int i = 0; i < conditionalDataBinders.length; i++) {
-            ConditionalDataBinder<T> dataBinder = conditionalDataBinders[i];
+        for (ConditionalDataBinder<T> dataBinder : conditionalDataBinders) {
             if (dataBinder.canHandle(model)) {
                 return dataBinder.getBindingVariable(model);
             }

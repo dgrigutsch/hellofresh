@@ -1,9 +1,11 @@
 package com.example.bitninja.hellofreshtest.recipes.model;
 
-import android.view.View;
-import android.widget.Toast;
-
 import com.google.gson.annotations.SerializedName;
+
+import org.joda.time.Period;
+import org.joda.time.format.ISOPeriodFormat;
+import org.joda.time.format.PeriodFormat;
+import org.joda.time.format.PeriodFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,6 +166,13 @@ public class RecipesModel {
         return time;
     }
 
+    public String getFormatedTime() {
+        PeriodFormatter pf = ISOPeriodFormat.standard();
+        Period period = pf.parsePeriod(time);
+        String tempDate = PeriodFormat.getDefault().print(period);
+        return tempDate;
+    }
+
     public List<Object> getUndeliverableIngredients() {
         return undeliverableIngredients;
     }
@@ -176,7 +185,18 @@ public class RecipesModel {
         return weeks;
     }
 
-    public void onItemClick(View v) {
-        Toast.makeText(v.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RecipesModel)) return false;
+
+        RecipesModel model = (RecipesModel) o;
+        return id.equals(model.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

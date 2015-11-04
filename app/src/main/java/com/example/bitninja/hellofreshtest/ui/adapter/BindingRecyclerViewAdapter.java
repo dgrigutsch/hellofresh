@@ -109,7 +109,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
 
         @Override
         public void onChanged(ObservableList sender) {
-            RecyclerView.Adapter adapter = adapterReference.get();
+            RecyclerView.Adapter<ViewHolder> adapter = adapterReference.get();
             if (adapter != null) {
                 adapter.notifyDataSetChanged();
             }
@@ -117,7 +117,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
 
         @Override
         public void onItemRangeChanged(ObservableList sender, int positionStart, int itemCount) {
-            RecyclerView.Adapter adapter = adapterReference.get();
+            RecyclerView.Adapter<ViewHolder> adapter = adapterReference.get();
             if (adapter != null) {
                 adapter.notifyItemRangeChanged(positionStart, itemCount);
             }
@@ -125,7 +125,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
 
         @Override
         public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
-            RecyclerView.Adapter adapter = adapterReference.get();
+            RecyclerView.Adapter<ViewHolder> adapter = adapterReference.get();
             if (adapter != null) {
                 adapter.notifyItemRangeInserted(positionStart, itemCount);
             }
@@ -133,7 +133,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
 
         @Override
         public void onItemRangeMoved(ObservableList sender, int fromPosition, int toPosition, int itemCount) {
-            RecyclerView.Adapter adapter = adapterReference.get();
+            RecyclerView.Adapter<ViewHolder> adapter = adapterReference.get();
             if (adapter != null) {
                 adapter.notifyItemMoved(fromPosition, toPosition);
             }
@@ -141,7 +141,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
 
         @Override
         public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
-            RecyclerView.Adapter adapter = adapterReference.get();
+            RecyclerView.Adapter<ViewHolder> adapter = adapterReference.get();
             if (adapter != null) {
                 adapter.notifyItemRangeRemoved(positionStart, itemCount);
             }

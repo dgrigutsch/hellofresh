@@ -1,7 +1,7 @@
 package com.example.bitninja.hellofreshtest.ui.view;
 
 /**
- * Created by Bitninja on 28.10.2015.
+ * Created by Bitninja.
  */
 
 import android.content.Context;
@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -32,7 +33,7 @@ public class CircleImageView extends ImageView {
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
-    private static final int COLORDRAWABLE_DIMENSION = 2;
+    private static final int COLOR_DRAWABLE_DIMENSION = 2;
 
     private static final int DEFAULT_BORDER_WIDTH = 0;
     private static final int DEFAULT_BORDER_COLOR = Color.BLACK;
@@ -137,11 +138,12 @@ public class CircleImageView extends ImageView {
         setup();
     }
 
+    @SuppressWarnings("unused")
     public int getBorderColor() {
         return mBorderColor;
     }
 
-    public void setBorderColor(@ColorInt int borderColor) {
+    private void setBorderColor(@ColorInt int borderColor) {
         if (borderColor == mBorderColor) {
             return;
         }
@@ -151,15 +153,17 @@ public class CircleImageView extends ImageView {
         invalidate();
     }
 
+    @SuppressWarnings("unused")
     public void setBorderColorResource(@ColorRes int borderColorRes) {
-        setBorderColor(getContext().getResources().getColor(borderColorRes));
+        setBorderColor(ContextCompat.getColor(getContext(), borderColorRes));
     }
 
+    @SuppressWarnings("unused")
     public int getFillColor() {
         return mFillColor;
     }
 
-    public void setFillColor(@ColorInt int fillColor) {
+    private void setFillColor(@ColorInt int fillColor) {
         if (fillColor == mFillColor) {
             return;
         }
@@ -169,14 +173,17 @@ public class CircleImageView extends ImageView {
         invalidate();
     }
 
+    @SuppressWarnings("unused")
     public void setFillColorResource(@ColorRes int fillColorRes) {
-        setFillColor(getContext().getResources().getColor(fillColorRes));
+        setFillColor(ContextCompat.getColor(getContext(), fillColorRes));
     }
 
+    @SuppressWarnings("unused")
     public int getBorderWidth() {
         return mBorderWidth;
     }
 
+    @SuppressWarnings("unused")
     public void setBorderWidth(int borderWidth) {
         if (borderWidth == mBorderWidth) {
             return;
@@ -186,10 +193,12 @@ public class CircleImageView extends ImageView {
         setup();
     }
 
+    @SuppressWarnings("unused")
     public boolean isBorderOverlay() {
         return mBorderOverlay;
     }
 
+    @SuppressWarnings("unused")
     public void setBorderOverlay(boolean borderOverlay) {
         if (borderOverlay == mBorderOverlay) {
             return;
@@ -251,7 +260,7 @@ public class CircleImageView extends ImageView {
             Bitmap bitmap;
 
             if (drawable instanceof ColorDrawable) {
-                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
+                bitmap = Bitmap.createBitmap(COLOR_DRAWABLE_DIMENSION, COLOR_DRAWABLE_DIMENSION, BITMAP_CONFIG);
             } else {
                 bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG);
             }
