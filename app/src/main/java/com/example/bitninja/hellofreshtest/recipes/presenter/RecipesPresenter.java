@@ -37,12 +37,12 @@ public class RecipesPresenter extends BasePresenter<RecipesActivity> {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                RecipesModel[] modelFromPrefs = SharedPreferencesFactory.getInstance(getView()).getModelFromPrefs();
+                RecipesModel[] modelFromPrefs = SharedPreferencesFactory.getInstance().getModelFromPrefs();
                 if (modelFromPrefs == null) {
                     JSONResourceReader reader = new JSONResourceReader(getView().getResources(), R.raw.recipes);
                     RecipesModel[] response = reader.constructUsingGson(RecipesModel[].class);
                     recipesModel = Arrays.asList(response);
-                    SharedPreferencesFactory.getInstance(getView()).writeRecipeModelToPrefs(recipesModel);
+                    SharedPreferencesFactory.getInstance().writeRecipeModelToPrefs(recipesModel);
                 } else {
                     recipesModel = Arrays.asList(modelFromPrefs);
                 }
@@ -103,7 +103,7 @@ public class RecipesPresenter extends BasePresenter<RecipesActivity> {
         if (itemIndex != -1) {
             recipesModel.set(itemIndex, model);
         }
-        SharedPreferencesFactory.getInstance(getView()).writeRecipeModelToPrefs(recipesModel);
+        SharedPreferencesFactory.getInstance().writeRecipeModelToPrefs(recipesModel);
     }
 
     public interface RecipesListener {

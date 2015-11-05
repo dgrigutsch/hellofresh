@@ -1,5 +1,6 @@
 package com.example.bitninja.hellofreshtest.recipes.model;
 
+import com.example.bitninja.hellofreshtest.util.factory.SharedPreferencesFactory;
 import com.google.gson.annotations.SerializedName;
 
 import org.joda.time.Period;
@@ -154,6 +155,10 @@ public class RecipesModel {
         return rating;
     }
 
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
     public Integer getRatings() {
         return ratings;
     }
@@ -183,6 +188,10 @@ public class RecipesModel {
 
     public List<String> getWeeks() {
         return weeks;
+    }
+
+    public boolean isMarked() {
+        return SharedPreferencesFactory.getInstance().getMarkState(id);
     }
 
     @Override

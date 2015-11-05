@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.StrictMode;
 
 import com.example.bitninja.hellofreshtest.BuildConfig;
+import com.example.bitninja.hellofreshtest.util.factory.SharedPreferencesFactory;
 
 /**
  * Created by Bitninja.
@@ -26,5 +27,6 @@ public class BaseApplication extends Application {
                     .build());
         }
         super.onCreate();
+        SharedPreferencesFactory.init(this);
     }
 }

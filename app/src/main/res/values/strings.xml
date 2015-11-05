@@ -14,7 +14,7 @@
         completions.”
     </string>
     <string name="title_activity_receipes">ReceipesActivity</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_login">Login</string>
     <string name="difficulty">Level</string>
     <string name="minutes">min</string>
     <string name="nutrition">Nutrition</string>
