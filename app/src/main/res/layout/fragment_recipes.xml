@@ -6,7 +6,7 @@
 
         <variable
             name="recipeModel"
-            type="com.example.bitninja.hellofreshtest.recipes.model.RecipeViewModel" />
+            type="com.example.bitninja.hellofresh.recipes.model.RecipeViewModel" />
 
     </data>
 

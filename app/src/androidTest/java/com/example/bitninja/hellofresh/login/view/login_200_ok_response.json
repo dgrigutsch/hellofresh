@@ -1,0 +1,12 @@
+{
+  "success": {
+    "total": 1
+  },
+  "contents": {
+    "user": {
+      "email": "piggy@hellofresh.hf",
+      "latlng": "52.520007, 13.404954",
+      "name": "Samwell Tarly"
+    }
+  }
+}

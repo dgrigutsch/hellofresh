@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.bitninja.hellofreshtest.recipes.view.RecipesActivity">
+    tools:context="com.example.bitninja.hellofresh.recipes.view.RecipesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
