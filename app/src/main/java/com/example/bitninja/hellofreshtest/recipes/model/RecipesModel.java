@@ -1,5 +1,6 @@
 package com.example.bitninja.hellofreshtest.recipes.model;
 
+import com.example.bitninja.hellofreshtest.login.model.User;
 import com.example.bitninja.hellofreshtest.util.factory.SharedPreferencesFactory;
 import com.google.gson.annotations.SerializedName;
 

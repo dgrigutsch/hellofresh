@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.example.bitninja.hellofreshtest.R;
 import com.example.bitninja.hellofreshtest.base.BaseActivity;
 import com.example.bitninja.hellofreshtest.base.BasePresenter;
-import com.example.bitninja.hellofreshtest.recipes.model.User;
+import com.example.bitninja.hellofreshtest.login.model.User;
 import com.example.bitninja.hellofreshtest.retrofit.factory.RetrofitFactory;
 import com.example.bitninja.hellofreshtest.retrofit.service.AuthService;
 
@@ -77,7 +77,7 @@ public class LoginActivity extends BaseActivity {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    protected void attemptLogin() {
 
         // Reset errors.
         mEmailView.setError(null);

@@ -41,4 +41,8 @@ public class RetrofitFactory {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+
+    public void setBaseUrl(String url) {
+        this.url = url;
+    }
 }

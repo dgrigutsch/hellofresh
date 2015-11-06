@@ -40,7 +40,7 @@ public class SharedPreferencesFactory {
         writeRecipeModelToPrefs(model.toArray(new RecipesModel[model.size()]));
     }
 
-    private void writeRecipeModelToPrefs(RecipesModel[] model) {
+    public void writeRecipeModelToPrefs(RecipesModel[] model) {
         String value = GsonFactory.getInstance().getGson().toJson(model, RecipesModel[].class);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PREFS_JSON_FILE, value);

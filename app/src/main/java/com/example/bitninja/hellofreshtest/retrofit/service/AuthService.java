@@ -1,6 +1,6 @@
 package com.example.bitninja.hellofreshtest.retrofit.service;
 
-import com.example.bitninja.hellofreshtest.recipes.model.User;
+import com.example.bitninja.hellofreshtest.login.model.User;
 
 import retrofit.Call;
 import retrofit.http.GET;

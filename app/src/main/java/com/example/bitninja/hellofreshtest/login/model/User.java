@@ -1,4 +1,4 @@
-package com.example.bitninja.hellofreshtest.recipes.model;
+package com.example.bitninja.hellofreshtest.login.model;
 
 import com.google.gson.annotations.SerializedName;
 
