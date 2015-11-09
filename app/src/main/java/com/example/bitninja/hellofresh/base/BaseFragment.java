@@ -13,7 +13,7 @@ public class BaseFragment<P extends BasePresenter> extends Fragment {
      * The presenter for this view. Will be instantiated with {@link #getPresenter()}
      */
     protected P presenter;
-    private String title = "";
+    private String title;
 
     @Override
     public void onAttach(Context context) {

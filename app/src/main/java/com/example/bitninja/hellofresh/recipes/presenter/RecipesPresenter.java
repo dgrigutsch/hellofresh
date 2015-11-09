@@ -69,7 +69,6 @@ public class RecipesPresenter extends BasePresenter<RecipesActivity> {
         transaction.replace(R.id.container, fragment, fragment.getStringTag());
         transaction.addToBackStack(null);
         transaction.commit();
-        fragment.setTitle(fragment.getStringTag());
     }
 
     public void startRecipeFragment() {
@@ -79,10 +78,11 @@ public class RecipesPresenter extends BasePresenter<RecipesActivity> {
         transaction.replace(R.id.container, fragment, fragment.getStringTag());
         transaction.addToBackStack(null);
         transaction.commit();
-        fragment.setTitle(fragment.getStringTag());
     }
 
     public RecipesModel getModelByPosition(int pos) {
+        if(pos==-1)
+            return null;
         return getRecipesModel().get(pos);
     }
 
@@ -99,6 +99,11 @@ public class RecipesPresenter extends BasePresenter<RecipesActivity> {
 
     @SuppressWarnings("unused")
     public void saveRecipeModel(RecipesModel model) {
+        if(model==null)
+            throw new NullPointerException(RecipesModel.class.getSimpleName()+" is null");
+        if(recipesModel==null) {
+            throw new NullPointerException("variable recipesModel is not assigned");
+        }
         int itemIndex = recipesModel.indexOf(model);
         if (itemIndex != -1) {
             recipesModel.set(itemIndex, model);

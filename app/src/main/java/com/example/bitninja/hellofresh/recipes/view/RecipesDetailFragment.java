@@ -3,6 +3,7 @@ package com.example.bitninja.hellofresh.recipes.view;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class RecipesDetailFragment extends BaseFragment<RecipesPresenter> {
                 binding.setVariable(BR.recipeModel, model);
             }
         });
+        setTitle(RecipesDetailFragment.class.getSimpleName());
         return v;
     }
 }

@@ -37,6 +37,7 @@ public class RecipesActivityFragment extends BaseFragment<RecipesPresenter> impl
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getPresenter().bindListener(this);
         presenter.loadFileFromDisk();
+        setTitle(RecipesActivityFragment.class.getSimpleName());
         return v;
     }
 
