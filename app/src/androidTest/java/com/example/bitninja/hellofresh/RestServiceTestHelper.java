@@ -29,7 +29,6 @@ public class RestServiceTestHelper {
         if(stream==null)
             throw new NullPointerException("InputStream is null");
         String ret = convertStreamToString(stream);
-        //Make sure you close all streams.
         stream.close();
         return ret;
     }

@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,22 +18,13 @@ import android.widget.TextView;
 
 import com.example.bitninja.hellofresh.R;
 import com.example.bitninja.hellofresh.base.BaseActivity;
-import com.example.bitninja.hellofresh.base.BasePresenter;
 import com.example.bitninja.hellofresh.login.model.User;
-import com.example.bitninja.hellofresh.retrofit.factory.RetrofitFactory;
-import com.example.bitninja.hellofresh.retrofit.service.AuthService;
-
-import java.nio.charset.Charset;
-
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import com.example.bitninja.hellofresh.login.presenter.LoginPresenter;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -46,6 +36,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        presenter = new LoginPresenter(this);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -116,34 +107,27 @@ public class LoginActivity extends BaseActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            byte[] data = (email + password).getBytes(Charset.forName("UTF-8"));
-            AuthService loginService = RetrofitFactory.getInstance(this)
-                    .build().create(AuthService.class);
-            Call<User> call = loginService.basicLogin(Base64.encodeToString(data, Base64.NO_WRAP));
-            call.enqueue(new Callback<User>() {
+            presenter.doLogin(email, password, new LoginPresenter.LoginListener() {
                 @Override
-                public void onResponse(Response<User> response, Retrofit retrofit) {
-                    @SuppressWarnings("unused")
-                    User user = response.body();
-                    Snackbar.make(findViewById(android.R.id.content),
-                            R.string.login_success, Snackbar.LENGTH_SHORT).show();
+                public void onLoginSuccess(User user) {
                     onRequestFinished(true);
                 }
 
                 @Override
-                public void onFailure(Throwable t) {
+                public void onLoginFailed(Throwable t) {
+                    onRequestFinished(false);
                     Snackbar.make(findViewById(android.R.id.content),
                             t.getMessage(), Snackbar.LENGTH_SHORT).show();
-                    onRequestFinished(false);
                 }
             });
-
         }
     }
 
     private void onRequestFinished(boolean success) {
         showProgress(false);
         if (success) {
+            Snackbar.make(findViewById(android.R.id.content),
+                    R.string.login_success, Snackbar.LENGTH_SHORT).show();
             finish();
         } else {
             mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -198,8 +182,8 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    public BasePresenter getPresenter() {
-        return null;
+    public LoginPresenter getPresenter() {
+        return presenter;
     }
 }
 
