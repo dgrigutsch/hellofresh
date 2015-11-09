@@ -45,7 +45,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 
     @Test
     public void requestLogin() throws Exception {
-        String fileName = "login_200_ok_response.json";
+        String fileName = "200_ok_response.json";
 //        server.enqueue(new MockResponse()
 //                .setResponseCode(200)
 //                .setBody(RestServiceTestHelper.getStringFromFile(getActivity(), fileName)));

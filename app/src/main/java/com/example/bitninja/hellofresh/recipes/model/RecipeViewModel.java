@@ -7,7 +7,7 @@ import android.databinding.ObservableArrayList;
 import com.example.bitninja.hellofresh.R;
 import com.example.bitninja.hellofresh.ui.binder.ItemBinder;
 import com.example.bitninja.hellofresh.ui.binder.ItemBinderBase;
-import com.example.bitninja.hellofreshtest.BR;
+import com.example.bitninja.hellofresh.BR;
 
 /**
  * Created by Bitninja.

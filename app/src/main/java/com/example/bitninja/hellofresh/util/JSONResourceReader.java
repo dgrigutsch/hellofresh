@@ -20,41 +20,13 @@ import java.io.Writer;
  */
 public class JSONResourceReader {
     private static final String CHARSET_NAME = "UTF-8";
-
-    // === [ Private Data Members ] ============================================
     private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
-    // Our JSON, in string form.
-    private String jsonString;
+    private Resources resources;
+    private int resId;
 
-    // === [ Public API ] ======================================================
-
-    /**
-     * Read from a resources file and create a {@link JSONResourceReader} object that will allow the creation of other
-     * objects from this resource.
-     *
-     * @param resources An application {@link Resources} object.
-     * @param id The id for the resource to load, typically held in the raw/ folder.
-     */
-    public JSONResourceReader(Resources resources, int id) {
-        InputStream resourceReader = resources.openRawResource(id);
-        Writer writer = new StringWriter();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, CHARSET_NAME));
-            String line = reader.readLine();
-            while (line != null) {
-                writer.write(line);
-                line = reader.readLine();
-            }
-        } catch (Exception e) {
-            Log.e(LOGTAG, "Unhandled exception while using JSONResourceReader", e);
-        } finally {
-            try {
-                resourceReader.close();
-            } catch (Exception e) {
-                Log.e(LOGTAG, "Unhandled exception while using JSONResourceReader", e);
-            }
-        }
-        jsonString = writer.toString();
+    public JSONResourceReader(Resources resources, int resId) {
+        this.resId = resId;
+        this.resources = resources;
     }
 
     /**
@@ -65,6 +37,20 @@ public class JSONResourceReader {
      * @return An object of type T, with member fields populated using Gson.
      */
     public <T> T constructUsingGson(Class<T> type) {
-        return GsonFactory.getInstance().getGson().fromJson(jsonString, type);
+        InputStream resourceReader = resources.openRawResource(resId);
+        T obj = null;
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceReader, CHARSET_NAME));
+            obj = GsonFactory.getInstance().getGson().fromJson(reader, type);
+        } catch (Exception e) {
+            Log.e(LOGTAG, "Unhandled exception while using JSONResourceReader", e);
+        } finally {
+            try {
+                resourceReader.close();
+            } catch (Exception e) {
+                Log.e(LOGTAG, "Unhandled exception while using JSONResourceReader", e);
+            }
+        }
+        return obj;
     }
 }

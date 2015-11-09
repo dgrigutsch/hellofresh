@@ -14,7 +14,7 @@ import com.example.bitninja.hellofresh.databinding.FragmentRecipesDetailsBinding
 import com.example.bitninja.hellofresh.recipes.model.RecipesModel;
 import com.example.bitninja.hellofresh.recipes.presenter.RecipesPresenter;
 import com.example.bitninja.hellofresh.util.factory.SharedPreferencesFactory;
-import com.example.bitninja.hellofreshtest.BR;
+import com.example.bitninja.hellofresh.BR;
 
 /**
  * A placeholder fragment containing a simple view.

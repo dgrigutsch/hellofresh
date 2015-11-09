@@ -1,5 +1,7 @@
 package com.example.bitninja.hellofresh.util.factory;
 
+import com.example.bitninja.hellofresh.util.factory.customGsonType.ContentDeserializer;
+import com.example.bitninja.hellofresh.login.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -19,6 +21,7 @@ public class GsonFactory {
 
     public Gson getGson() {
         return new GsonBuilder()
+                .registerTypeAdapter(User.class,new ContentDeserializer<User>())
                 .create();
     }
 }
