@@ -1,7 +1,7 @@
 package com.example.bitninja.hellofresh.ui.binder;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * ItemBinder.
  */
 public interface ItemBinder<T> {
     int getLayoutRes(T model);

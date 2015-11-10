@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     private View mLoginFormView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         presenter = new LoginPresenter(this);
@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+            public boolean onEditorAction(final TextView textView, final int id, final KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
@@ -51,10 +51,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        final Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 attemptLogin();
             }
         });
@@ -68,15 +68,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    protected void attemptLogin() {
+    void attemptLogin() {
 
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        final String email = mEmailView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -109,12 +109,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             showProgress(true);
             presenter.doLogin(email, password, new LoginPresenter.LoginListener() {
                 @Override
-                public void onLoginSuccess(User user) {
+                public void onLoginSuccess(final User user) {
                     onRequestFinished(true);
                 }
 
                 @Override
-                public void onLoginFailed(Throwable t) {
+                public void onLoginFailed(final Throwable t) {
                     onRequestFinished(false);
                     Snackbar.make(findViewById(android.R.id.content),
                             t.getMessage(), Snackbar.LENGTH_SHORT).show();
@@ -123,7 +123,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         }
     }
 
-    private void onRequestFinished(boolean success) {
+    private void onRequestFinished(final boolean success) {
         showProgress(false);
         if (success) {
             Snackbar.make(findViewById(android.R.id.content),
@@ -135,12 +135,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         }
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean isEmailValid(final String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
-    private boolean isPasswordValid(String password) {
+    private boolean isPasswordValid(final String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
@@ -154,13 +154,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+            final int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
             mLoginFormView.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(final Animator animation) {
                     mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
                 }
             });
@@ -169,7 +169,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             mProgressView.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(final Animator animation) {
                     mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
                 }
             });

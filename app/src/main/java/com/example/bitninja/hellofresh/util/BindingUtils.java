@@ -6,12 +6,12 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Bitninja on 27.10.2015.
+ * BindingUtils.
  */
 public class BindingUtils {
 
     @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String url) {
+    public static void loadImage(final ImageView view, final String url) {
         Picasso.with(view.getContext())
                 .load(url)
                 .into(view);

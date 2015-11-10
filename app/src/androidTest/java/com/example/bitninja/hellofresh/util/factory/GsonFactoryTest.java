@@ -25,10 +25,10 @@ public class GsonFactoryTest extends ApplicationTestCase<BaseApplication> {
 
     public void testGsonDeserializeUser() throws Exception {
 
-        String fileName = "200_ok_response.json";
-        String json = RestServiceTestHelper.getStringFromFile(getContext(), fileName);
+        final String fileName = "200_ok_response.json";
+        final String json = RestServiceTestHelper.getStringFromFile(getContext(), fileName);
         assert  json != null;
-        User user = GsonFactory.getInstance().getGson().fromJson(json, User.class);
+        final User user = GsonFactory.getInstance().getGson().fromJson(json, User.class);
         assertEquals(user.getEmail(), "piggy@hellofresh.hf");
     }
 }

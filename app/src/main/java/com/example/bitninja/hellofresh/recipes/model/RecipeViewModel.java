@@ -10,7 +10,7 @@ import com.example.bitninja.hellofresh.ui.binder.ItemBinderBase;
 import com.example.bitninja.hellofresh.BR;
 
 /**
- * Created by Bitninja.
+ * This class binds the modelView to the layout and recognize changes.
  */
 public class RecipeViewModel extends BaseObservable {
 

@@ -10,28 +10,35 @@ import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
 /**
- * Created by Bitninja.
+ * RetrofitFactory.
  */
 public class RetrofitFactory {
 
     private static RetrofitFactory _instance;
-    private static OkHttpClient httpClient = new OkHttpClient();
+    private  final static OkHttpClient httpClient = new OkHttpClient();
     private String url = "";
 
-
-    public RetrofitFactory(Context context) {
+    private RetrofitFactory(final Context context) {
         url = context.getString(R.string.base_url);
     }
 
-    public static RetrofitFactory getInstance(Context context) {
+    /**
+     * Creates a new Retrofit instance, if needed.
+     * @param context context
+     */
+    public static RetrofitFactory getInstance(final Context context) {
         if (_instance == null)
             _instance = new RetrofitFactory(context);
         return _instance;
     }
 
+    /**
+     * returns a pre build Retrofit instance
+     * @return Retrofit
+     */
     public Retrofit build() {
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClient.interceptors().add(interceptor);
 
@@ -42,7 +49,11 @@ public class RetrofitFactory {
                 .build();
     }
 
-    public void setBaseUrl(String url) {
+    /**
+     * sets the BaseUrl for api requests
+     * @param url url
+     */
+    public void setBaseUrl(final String url) {
         this.url = url;
     }
 }

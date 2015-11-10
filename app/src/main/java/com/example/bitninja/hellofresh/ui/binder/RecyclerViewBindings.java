@@ -8,17 +8,18 @@ import com.example.bitninja.hellofresh.ui.adapter.BindingRecyclerViewAdapter;
 import java.util.Collection;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * RecyclerViewBindings.
  */
+@SuppressWarnings("unused")
 public class RecyclerViewBindings
 {
     private static final int KEY = -123;
 
     @SuppressWarnings("unchecked")
     @BindingAdapter("items")
-    public static <T> void setItems(RecyclerView recyclerView, Collection<T> items)
+    public static <T> void setItems(final RecyclerView recyclerView, final Collection<T> items)
     {
-        BindingRecyclerViewAdapter<T> adapter = (BindingRecyclerViewAdapter<T>) recyclerView.getAdapter();
+        final BindingRecyclerViewAdapter<T> adapter = (BindingRecyclerViewAdapter<T>) recyclerView.getAdapter();
         if (adapter != null)
         {
             adapter.setItems(items);
@@ -32,9 +33,9 @@ public class RecyclerViewBindings
 
     @SuppressWarnings("unchecked")
     @BindingAdapter("itemViewBinder")
-    public static <T> void setItemViewBinder(RecyclerView recyclerView, ItemBinder<T> itemViewMapper)
+    public static <T> void setItemViewBinder(final RecyclerView recyclerView, final ItemBinder<T> itemViewMapper)
     {
-        Collection<T> items = (Collection<T>) recyclerView.getTag(KEY);
+        final Collection<T> items = (Collection<T>) recyclerView.getTag(KEY);
         recyclerView.setAdapter(new BindingRecyclerViewAdapter<>(itemViewMapper, items));
     }
 }

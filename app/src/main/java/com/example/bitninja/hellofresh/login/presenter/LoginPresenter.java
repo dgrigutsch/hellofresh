@@ -20,30 +20,40 @@ import retrofit.Retrofit;
  */
 public class LoginPresenter extends BasePresenter<LoginActivity> {
 
-    public LoginPresenter(LoginActivity activity) {
+    public LoginPresenter(final LoginActivity activity) {
         bindView(activity);
     }
 
-    public void doLogin(String email, String password, final LoginListener listener) {
-        byte[] data = (email + password).getBytes(Charset.forName("UTF-8"));
+    /**
+     * creates and performs the loginRequest to the Backend
+     *
+     * @param email    email
+     * @param password password
+     * @param listener listener
+     */
+    public void doLogin(final String email, final String password, final LoginListener listener) {
+        final byte[] data = (email + password).getBytes(Charset.forName("UTF-8"));
         final AuthService loginService = RetrofitFactory.getInstance(getView())
                 .build().create(AuthService.class);
-        Call<User> call = loginService.basicLogin(Base64.encodeToString(data, Base64.NO_WRAP));
+        final Call<User> call = loginService.basicLogin(Base64.encodeToString(data, Base64.NO_WRAP));
         call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Response<User> response, Retrofit retrofit) {
-                @SuppressWarnings("unused")
+            public void onResponse(final Response<User> response, final Retrofit retrofit) {
+                @SuppressWarnings("unused") final
                 User user = response.body();
                 listener.onLoginSuccess(user);
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(final Throwable t) {
                 listener.onLoginFailed(t);
             }
         });
     }
 
+    /**
+     * interface to handle the loginEvents that are called from the Request
+     */
     public interface LoginListener {
         void onLoginSuccess(User user);
 

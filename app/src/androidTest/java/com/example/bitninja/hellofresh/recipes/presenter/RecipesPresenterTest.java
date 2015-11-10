@@ -1,8 +1,6 @@
 package com.example.bitninja.hellofresh.recipes.presenter;
 
 import android.support.v4.app.FragmentManager;
-import android.test.ActivityInstrumentationTestCase2;
-import android.util.Log;
 
 import com.example.bitninja.hellofresh.recipes.model.RecipesModel;
 import com.example.bitninja.hellofresh.recipes.view.RecipesActivity;
@@ -30,18 +28,16 @@ public class RecipesPresenterTest extends ActivityInstrumentationTestCase2<Recip
         presenter = new RecipesPresenter(getActivity());
     }
 
-    @Test
     public void testLoadFileFromDisk() throws Exception {
         presenter.bindListener(new RecipesPresenter.RecipesListener() {
             @Override
-            public void onLoadedFromFile(List<RecipesModel> model) {
+            public void onJsonLoaded(final List<RecipesModel> model) {
                 assert model != null;
             }
         });
         presenter.loadFileFromDisk();
     }
 
-    @Test
     public void testStartDetailsFragment() throws Exception {
         presenter.startDetailsFragment(-1);
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -52,7 +48,6 @@ public class RecipesPresenterTest extends ActivityInstrumentationTestCase2<Recip
         });
     }
 
-    @Test
     public void testStartRecipeFragment() throws Exception {
         presenter.startRecipeFragment();
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -63,40 +58,32 @@ public class RecipesPresenterTest extends ActivityInstrumentationTestCase2<Recip
         });
     }
 
-    @Test
     public void testGetModelByPosition() throws Exception {
 
         presenter.bindListener(new RecipesPresenter.RecipesListener() {
             @Override
-            public void onLoadedFromFile(List<RecipesModel> model) {
+            public void onJsonLoaded(final List<RecipesModel> model) {
                 assertNull(presenter.getModelByPosition(-1));
             }
         });
         presenter.loadFileFromDisk();
     }
 
-    @Test
     public void testGetRecipesModel() throws Exception {
 
         presenter.bindListener(new RecipesPresenter.RecipesListener() {
             @Override
-            public void onLoadedFromFile(List<RecipesModel> model) {
-                assert (presenter.getRecipesModel().size() > 0);
+            public void onJsonLoaded(List<RecipesModel> model) {
+                assertTrue (presenter.getRecipesModel().isEmpty());
             }
         });
         presenter.loadFileFromDisk();
     }
 
-    @Test
-    public void testGetListener() throws Exception {
-        assertTrue(presenter.getListener() == null);
-    }
-
-    @Test
     public void testSaveRecipeModel() throws Exception {
         try {
             presenter.saveRecipeModel(null);
-        }catch (Exception e){
+        }catch (final Exception e){
             assertEquals(e.getClass(),NullPointerException.class);
         }
     }

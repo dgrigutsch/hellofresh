@@ -19,8 +19,12 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      */
     public abstract P getPresenter();
 
+    /**
+     * sets a new presenter instance.
+     * @param presenter Presenter
+     */
     @SuppressWarnings("unused")
-    public void setPresenter(@NonNull P presenter) {
+    public void setPresenter(@NonNull final P presenter) {
         this.presenter = presenter;
     }
 

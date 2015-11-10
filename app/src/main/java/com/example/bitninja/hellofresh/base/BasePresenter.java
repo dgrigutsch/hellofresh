@@ -9,10 +9,18 @@ public abstract class BasePresenter<T> {
 
     private WeakReference<T> viewRef;
 
-    public void bindView(T view) {
+    /**
+     * binds the view to the Presenter, most time its an activity
+     * @param view view
+     */
+    public void bindView(final T view) {
         viewRef = new WeakReference<>(view);
     }
 
+    /**
+     * returns the view
+     * @return T
+     */
     protected T getView() {
         if (viewRef.get() != null) {
             return viewRef.get();

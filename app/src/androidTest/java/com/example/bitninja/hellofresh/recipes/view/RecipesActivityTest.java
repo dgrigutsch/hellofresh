@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created by Bitninja on 06.11.2015.
+ * RecipesActivityTest.
  */
 public class RecipesActivityTest extends ActivityInstrumentationTestCase2<RecipesActivity> {
 
@@ -25,7 +25,6 @@ public class RecipesActivityTest extends ActivityInstrumentationTestCase2<Recipe
 
     }
 
-    @Test
     public void testGetPresenter() throws Exception {
         assert getActivity().getPresenter() != null;
     }

@@ -3,14 +3,14 @@ package com.example.bitninja.hellofresh.login.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * User.
  */
 public class User {
 
     @SerializedName("email")
     private String email;
-    @SerializedName("latlng")
-    private String latlng;
+    @SerializedName("latLng")
+    private String latLng;
     @SerializedName("name")
     private String name;
 
@@ -18,8 +18,8 @@ public class User {
         return email;
     }
 
-    public String getLatlng() {
-        return latlng;
+    public String getLatLng() {
+        return latLng;
     }
 
     public String getName() {

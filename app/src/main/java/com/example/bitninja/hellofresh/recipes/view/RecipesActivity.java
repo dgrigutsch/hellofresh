@@ -20,10 +20,10 @@ public class RecipesActivity extends BaseActivity<RecipesPresenter> {
     private FrameLayout container;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipes);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         container = (FrameLayout) findViewById(R.id.container);
         container.setVisibility(View.GONE);
@@ -39,30 +39,33 @@ public class RecipesActivity extends BaseActivity<RecipesPresenter> {
         return presenter;
     }
 
-    public void hidePrograssBar() {
+    /**
+     * it's hides the ProgressBar
+     */
+    public void hideProgressBar() {
         if (progressBar != null)
             progressBar.hide();
         container.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_receipes, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
 
-            Intent intent = new Intent(this, LoginActivity.class);
+            final Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
 
             return true;

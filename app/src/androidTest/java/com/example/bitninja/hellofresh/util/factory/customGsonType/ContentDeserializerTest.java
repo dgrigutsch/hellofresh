@@ -8,13 +8,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by Bitninja on 09.11.2015.
+ * ContentDeserializerTest.
  */
 public class ContentDeserializerTest {
 
     @Test
     public void testDeserialize() throws Exception {
-        User user = GsonFactory.getInstance().getGson().fromJson("null", User.class);
+        final User user = GsonFactory.getInstance().getGson().fromJson("null", User.class);
         assertNull("User is null",user);
     }
 }

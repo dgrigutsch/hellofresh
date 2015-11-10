@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * RecipesModel.
  */
 public class RecipesModel {
 
@@ -156,7 +156,7 @@ public class RecipesModel {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(final Double rating) {
         this.rating = rating;
     }
 
@@ -172,11 +172,10 @@ public class RecipesModel {
         return time;
     }
 
-    public String getFormatedTime() {
-        PeriodFormatter pf = ISOPeriodFormat.standard();
-        Period period = pf.parsePeriod(time);
-        String tempDate = PeriodFormat.getDefault().print(period);
-        return tempDate;
+    public String getFormattedTime() {
+        final PeriodFormatter pf = ISOPeriodFormat.standard();
+        final Period period = pf.parsePeriod(time);
+        return PeriodFormat.getDefault().print(period);
     }
 
     public List<Object> getUndeliverableIngredients() {
@@ -196,11 +195,11 @@ public class RecipesModel {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof RecipesModel)) return false;
 
-        RecipesModel model = (RecipesModel) o;
+        final RecipesModel model = (RecipesModel) o;
         return id.equals(model.id);
 
     }

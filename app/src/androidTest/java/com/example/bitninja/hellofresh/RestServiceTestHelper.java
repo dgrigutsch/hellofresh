@@ -1,7 +1,6 @@
 package com.example.bitninja.hellofresh;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,10 +11,10 @@ import java.io.InputStreamReader;
  */
 public class RestServiceTestHelper {
 
-    public static String convertStreamToString(InputStream is) throws Exception {
+    private static String convertStreamToString(final InputStream is) throws Exception {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        final StringBuilder sb = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
             sb.append(line).append("\n");
@@ -24,11 +23,11 @@ public class RestServiceTestHelper {
         return sb.toString();
     }
 
-    public static String getStringFromFile(Context context, String filePath) throws Exception {
+    public static String getStringFromFile(final Context context, final String filePath) throws Exception {
         final InputStream stream = context.getResources().getAssets().open(filePath);
         if(stream==null)
             throw new NullPointerException("InputStream is null");
-        String ret = convertStreamToString(stream);
+        final String ret = convertStreamToString(stream);
         stream.close();
         return ret;
     }

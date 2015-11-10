@@ -1,22 +1,22 @@
 package com.example.bitninja.hellofresh.ui.binder;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * ItemBinderBase.
  */
 public class ItemBinderBase<T> implements ItemBinder<T> {
     final int layoutId;
     private final int bindingVariable;
 
-    public ItemBinderBase(int bindingVariable, int layoutId) {
+    public ItemBinderBase(final int bindingVariable, final int layoutId) {
         this.bindingVariable = bindingVariable;
         this.layoutId = layoutId;
     }
 
-    public int getLayoutRes(T model) {
+    public int getLayoutRes(final T model) {
         return layoutId;
     }
 
-    public int getBindingVariable(T model) {
+    public int getBindingVariable(final T model) {
         return bindingVariable;
     }
 }

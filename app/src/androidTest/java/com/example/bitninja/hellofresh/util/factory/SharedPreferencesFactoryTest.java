@@ -24,21 +24,18 @@ public class SharedPreferencesFactoryTest extends ApplicationTestCase<BaseApplic
         SharedPreferencesFactory.init(getContext());
     }
 
-    @Test
     public void testGetInstance() throws Exception {
         assert SharedPreferencesFactory.getInstance() != null;
     }
 
-    @Test
     public void testWriteRecipeModelToPrefs() throws Exception {
 
-        RecipesModel[] models = new RecipesModel[]{new RecipesModel()};
+        final RecipesModel[] models = {new RecipesModel()};
         SharedPreferencesFactory.getInstance().writeRecipeModelToPrefs(models);
     }
 
-    @Test
     public void testGetModelFromPrefs() throws Exception {
-        RecipesModel[] models = SharedPreferencesFactory.getInstance().getModelFromPrefs();
+        final RecipesModel[] models = SharedPreferencesFactory.getInstance().getModelFromPrefs();
         assert models != null;
     }
 

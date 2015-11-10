@@ -3,7 +3,6 @@ package com.example.bitninja.hellofresh.recipes.view;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,28 +28,31 @@ public class RecipesDetailFragment extends BaseFragment<RecipesPresenter> {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final FragmentRecipesDetailsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recipes_details, container, false);
-        View v = binding.getRoot();
+        final View v = binding.getRoot();
         if (getArguments().containsKey(ARG_ITEM_POSITION)) {
             model = getPresenter().getModelByPosition(getArguments().getInt(ARG_ITEM_POSITION));
             binding.setRecipeModel(model);
         }
-        RatingBar rb = (RatingBar) v.findViewById(R.id.ratingBar);
+        // Handles the Rating for the Recipe with an setOnRatingVarChangeListener
+        final RatingBar rb = (RatingBar) v.findViewById(R.id.ratingBar);
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            public void onRatingChanged(final RatingBar ratingBar, final float rating, final boolean fromUser) {
                 model.setRating((double) rating);
                 presenter.saveRecipeModel(model);
             }
         });
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        // A FloatingActionButton, that will handle, if the Recipe a Favorite
+        // View.OnClickListener will trigger the Event and stores it into the SharedPreferences
+        final FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 if (model.isMarked())
-                    SharedPreferencesFactory.getInstance().unmarkAsFavorite(model.getId());
+                    SharedPreferencesFactory.getInstance().unmaskAsFavorite(model.getId());
                 else
                     SharedPreferencesFactory.getInstance().markAsFavorite(model.getId());
                 binding.setVariable(BR.recipeModel, model);

@@ -17,30 +17,42 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Bitninja.
+ * RecipesPresenter.
  */
 public class RecipesPresenter extends BasePresenter<RecipesActivity> {
 
     private List<RecipesModel> recipesModel;
     private RecipesListener listener;
 
-    public RecipesPresenter(RecipesActivity activity) {
+    /**
+     *
+     * @param activity activity
+     */
+    public RecipesPresenter(final RecipesActivity activity) {
         bindView(activity);
     }
 
+    /**
+     *  binds the Listener to the Presenter
+     * @param listener listener
+     */
     public void bindListener(final RecipesListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * if the SharedPreferences does not contains the JsonData it will
+     * load it from the File inside the Raw Folder
+     */
     public void loadFileFromDisk() {
 
         new AsyncTask<Void, Void, Void>() {
             @Override
-            protected Void doInBackground(Void... params) {
-                RecipesModel[] modelFromPrefs = SharedPreferencesFactory.getInstance().getModelFromPrefs();
+            protected Void doInBackground(final Void... params) {
+                final RecipesModel[] modelFromPrefs = SharedPreferencesFactory.getInstance().getModelFromPrefs();
                 if (modelFromPrefs == null) {
-                    JSONResourceReader reader = new JSONResourceReader(getView().getResources(), R.raw.recipes);
-                    RecipesModel[] response = reader.constructUsingGson(RecipesModel[].class);
+                    final JSONResourceReader reader = new JSONResourceReader(getView().getResources(), R.raw.recipes);
+                    final RecipesModel[] response = reader.constructUsingGson(RecipesModel[].class);
                     recipesModel = Arrays.asList(response);
                     SharedPreferencesFactory.getInstance().writeRecipeModelToPrefs(recipesModel);
                 } else {
@@ -50,68 +62,89 @@ public class RecipesPresenter extends BasePresenter<RecipesActivity> {
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
+            protected void onPostExecute(final Void aVoid) {
                 super.onPostExecute(aVoid);
-                getView().hidePrograssBar();
-                listener.onLoadedFromFile(recipesModel);
+                getView().hideProgressBar();
+                listener.onJsonLoaded(recipesModel);
             }
         }.execute();
     }
 
-    public void startDetailsFragment(int itemPosition) {
+    /**
+     * starts the RecipesDetailFragment
+     *
+     * @param itemPosition itemPosition
+     */
+    public void startDetailsFragment(final int itemPosition) {
 
-        Bundle bundle = new Bundle();
+        final Bundle bundle = new Bundle();
         bundle.putInt(RecipesDetailFragment.ARG_ITEM_POSITION, itemPosition);
 
-        RecipesDetailFragment fragment = new RecipesDetailFragment();
+        final RecipesDetailFragment fragment = new RecipesDetailFragment();
         fragment.setArguments(bundle);
-        FragmentTransaction transaction = getView().getSupportFragmentManager().beginTransaction();
+        final FragmentTransaction transaction = getView().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment, fragment.getStringTag());
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
+    /**
+     * starts the RecipesActivityFragment
+     */
     public void startRecipeFragment() {
 
-        RecipesActivityFragment fragment = new RecipesActivityFragment();
-        FragmentTransaction transaction = getView().getSupportFragmentManager().beginTransaction();
+        final RecipesActivityFragment fragment = new RecipesActivityFragment();
+        final FragmentTransaction transaction = getView().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment, fragment.getStringTag());
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    public RecipesModel getModelByPosition(int pos) {
-        if(pos==-1)
+    /**
+     * returns the RecipeModel by position
+     *
+     * @param pos pos
+     * @return RecipeModel RecipeModel
+     */
+    public RecipesModel getModelByPosition(final int pos) {
+        if (pos == -1)
             return null;
         return getRecipesModel().get(pos);
     }
 
+    /**
+     * returns a list with RecipesModels
+     *
+     * @return List<RecipesModel>
+     */
     public List<RecipesModel> getRecipesModel() {
         if (recipesModel == null)
             throw new NullPointerException(RecipesModel.class.getSimpleName() + " is null");
         return recipesModel;
     }
 
-    @SuppressWarnings("unused")
-    public RecipesListener getListener() {
-        return listener;
-    }
-
-    @SuppressWarnings("unused")
-    public void saveRecipeModel(RecipesModel model) {
-        if(model==null)
-            throw new NullPointerException(RecipesModel.class.getSimpleName()+" is null");
-        if(recipesModel==null) {
+    /**
+     * saves the RecipesModel into the SharedPreferences
+     *
+     * @param model model
+     */
+    public void saveRecipeModel(final RecipesModel model) {
+        if (model == null)
+            throw new NullPointerException(RecipesModel.class.getSimpleName() + " is null");
+        if (recipesModel == null) {
             throw new NullPointerException("variable recipesModel is not assigned");
         }
-        int itemIndex = recipesModel.indexOf(model);
+        final int itemIndex = recipesModel.indexOf(model);
         if (itemIndex != -1) {
             recipesModel.set(itemIndex, model);
         }
         SharedPreferencesFactory.getInstance().writeRecipeModelToPrefs(recipesModel);
     }
 
+    /**
+     * this Event will be called, if the Json loaded from File or SharedPreferences
+     */
     public interface RecipesListener {
-        void onLoadedFromFile(List<RecipesModel> model);
+        void onJsonLoaded(List<RecipesModel> model);
     }
 }

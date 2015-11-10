@@ -1,16 +1,17 @@
 package com.example.bitninja.hellofresh.ui.binder;
 
 /**
- * Created by Bitninja on 26.10.2015.
+ * ConditionalDataBinder.
  */
 public abstract class ConditionalDataBinder<T> extends ItemBinderBase<T> {
-    public ConditionalDataBinder(int bindingVariable, int layoutId) {
+    public ConditionalDataBinder(final int bindingVariable, final int layoutId) {
         super(bindingVariable, layoutId);
     }
 
     public abstract boolean canHandle(T model);
 
-    public boolean canHandle(int layoutId) {
+    @SuppressWarnings("unused")
+    public boolean canHandle(final int layoutId) {
         return this.layoutId == layoutId;
     }
 }
