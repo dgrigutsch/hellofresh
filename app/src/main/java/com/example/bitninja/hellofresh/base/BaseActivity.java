@@ -1,7 +1,10 @@
 package com.example.bitninja.hellofresh.base;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.bitninja.hellofresh.util.factory.GsonFactory;
 
 /**
  * Created by Bitninja.
@@ -27,5 +30,4 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public void setPresenter(@NonNull final P presenter) {
         this.presenter = presenter;
     }
-
 }

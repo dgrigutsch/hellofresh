@@ -2,6 +2,7 @@ package com.example.bitninja.hellofresh.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
@@ -77,5 +78,12 @@ public class BaseFragment<P extends BasePresenter> extends Fragment {
         return getClass().getSimpleName();
     }
 
+    // this method is only called once for this fragment
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // retain this fragment
+        setRetainInstance(true);
+    }
 
 }
