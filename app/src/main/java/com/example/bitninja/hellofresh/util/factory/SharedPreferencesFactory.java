@@ -112,4 +112,16 @@ public class SharedPreferencesFactory {
         editor.putBoolean(PREFS_FAV_RECIPE + key, false);
         editor.apply();
     }
+
+    public void clearJsonData() {
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(PREFS_JSON_FILE);
+        editor.apply();
+    }
+
+    public void clearFavData(final String key) {
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(PREFS_FAV_RECIPE + key);
+        editor.apply();
+    }
 }

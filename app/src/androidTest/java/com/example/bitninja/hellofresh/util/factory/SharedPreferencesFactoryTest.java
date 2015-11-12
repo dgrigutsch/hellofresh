@@ -39,4 +39,9 @@ public class SharedPreferencesFactoryTest extends ApplicationTestCase<BaseApplic
         assert models != null;
     }
 
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+        SharedPreferencesFactory.getInstance().clearJsonData();
+    }
 }

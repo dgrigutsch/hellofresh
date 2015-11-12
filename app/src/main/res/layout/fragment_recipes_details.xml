@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start"
-                        android:text="@{recipeModel.getFormatedTime()}"
+                        android:text="@{recipeModel.getFormattedTime()}"
                         app:paddingStart="5dp" />
 
                 </LinearLayout>

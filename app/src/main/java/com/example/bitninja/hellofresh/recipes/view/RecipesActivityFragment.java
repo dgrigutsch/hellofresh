@@ -2,8 +2,10 @@ package com.example.bitninja.hellofresh.recipes.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,29 +47,38 @@ public class RecipesActivityFragment extends BaseFragment<RecipesPresenter> impl
     public void onJsonLoaded(final List<RecipesModel> model) {
         final RecipeViewModel recipeViewModel = new RecipeViewModel();
         recipeViewModel.recipes.addAll(model);
+        final GestureDetectorCompat detector = new GestureDetectorCompat(getActivity(), new RecyclerViewOnGestureListener());
         binding.activityUsersRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.activityUsersRecycler.setClickable(true);
         binding.setRecipeModel(recipeViewModel);
         binding.activityUsersRecycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
-            public boolean onInterceptTouchEvent(final RecyclerView rv, final MotionEvent e) {
-
-                if (e.getAction() == MotionEvent.ACTION_DOWN) {
-                    final View childView = rv.findChildViewUnder(e.getX(), e.getY());
-                    final int itemPosition = recyclerView.getChildAdapterPosition(childView);
-                    presenter.startDetailsFragment(itemPosition);
-                }
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                detector.onTouchEvent(e);
                 return false;
             }
 
             @Override
-            public void onTouchEvent(final RecyclerView rv, final MotionEvent e) {
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
             }
 
             @Override
-            public void onRequestDisallowInterceptTouchEvent(final boolean disallowIntercept) {
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
             }
         });
+    }
+
+    private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            View view = recyclerView.findChildViewUnder(e.getX(), e.getY());
+            final int itemPosition = recyclerView.getChildAdapterPosition(view);
+            presenter.startDetailsFragment(itemPosition);
+            return super.onSingleTapConfirmed(e);
+        }
     }
 
 }

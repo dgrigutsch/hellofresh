@@ -1,6 +1,7 @@
 package com.example.bitninja.hellofresh.recipes.presenter;
 
 import android.support.v4.app.FragmentManager;
+import android.test.ActivityInstrumentationTestCase2;
 
 import com.example.bitninja.hellofresh.recipes.model.RecipesModel;
 import com.example.bitninja.hellofresh.recipes.view.RecipesActivity;
@@ -74,7 +75,7 @@ public class RecipesPresenterTest extends ActivityInstrumentationTestCase2<Recip
         presenter.bindListener(new RecipesPresenter.RecipesListener() {
             @Override
             public void onJsonLoaded(List<RecipesModel> model) {
-                assertTrue (presenter.getRecipesModel().isEmpty());
+                assertFalse (presenter.getRecipesModel().isEmpty());
             }
         });
         presenter.loadFileFromDisk();
